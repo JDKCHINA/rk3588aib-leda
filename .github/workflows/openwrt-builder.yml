@@ -83,7 +83,13 @@ jobs:
       run: cd openwrt &&./scripts/feeds update -a
 
     - name: Install feeds
-      run: cd openwrt &&./scripts/feeds install -a
+        sed -i 's/coolsnowwolf\/luci.git;openwrt-23.05/coolsnowwolf\/luci.git/g' feeds.conf.default
+        sed -i "/src-git modem /d; 1 i src-git modem https://github.com/FUjr/modem_feeds.git" feeds.conf.default
+        #新增quectel_cm_5G插件
+        sed -i "/src-git quectel_cm_5G /d; 1 i src-git quectel_cm_5G https://github.com/xx-vv/quectel_cm_5G" feeds.conf.default
+        #新增风扇通用控制插件
+        sed -i "/src-git fancontrol /d; 1 i src-git fancontrol https://github.com/JiaY-shi/fancontrol.git" feeds.conf.default
+        run: cd openwrt &&./scripts/feeds install -a
 
     - name: Load custom configuration
       run: |
