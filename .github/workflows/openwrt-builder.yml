@@ -83,13 +83,24 @@ jobs:
       run: cd openwrt &&./scripts/feeds update -a
 
     - name: Install feeds
+      run: |
+        cd openwrt
+        #替换DTS文件
+        #git clone --depth=1 https://github.com/498110811/modem
+        #cp -f modem/rk3588-srcm3588-io.dts target/linux/rockchip/files/arch/arm64/boot/dts/rockchip/rk3588-srcm3588-io.dts
+        #修改luci源
+        #sed -i 's/coolsnowwolf\/luci.git;openwrt-23.05/498110811\/luci.git/g' feeds.conf.default
         sed -i 's/coolsnowwolf\/luci.git;openwrt-23.05/coolsnowwolf\/luci.git/g' feeds.conf.default
-        sed -i "/src-git modem /d; 1 i src-git modem https://github.com/FUjr/modem_feeds.git" feeds.conf.default
+        #新增modem拨号插件
+        sed -i "/src-git modem /d; 1 i src-git modem https://github.com/FUjr/Qmodem.git" feeds.conf.default
         #新增quectel_cm_5G插件
         sed -i "/src-git quectel_cm_5G /d; 1 i src-git quectel_cm_5G https://github.com/xx-vv/quectel_cm_5G" feeds.conf.default
+        
         #新增风扇通用控制插件
         sed -i "/src-git fancontrol /d; 1 i src-git fancontrol https://github.com/JiaY-shi/fancontrol.git" feeds.conf.default
-        run: cd openwrt &&./scripts/feeds install -a
+        
+        ./scripts/feeds update -a
+        ./scripts/feeds install -a
 
     - name: Load custom configuration
       run: |
