@@ -17,7 +17,7 @@ on:
   workflow_dispatch:
 
 env:
-  REPO_URL: https://github.com/xiaomeng9597/lede
+  REPO_URL: https://github.com/JDKCHINA/lede
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: .config
@@ -90,7 +90,7 @@ jobs:
         #cp -f modem/rk3588-srcm3588-io.dts target/linux/rockchip/files/arch/arm64/boot/dts/rockchip/rk3588-srcm3588-io.dts
         #修改luci源
         #sed -i 's/coolsnowwolf\/luci.git;openwrt-23.05/498110811\/luci.git/g' feeds.conf.default
-        sed -i 's/coolsnowwolf\/luci.git;openwrt-23.05/coolsnowwolf\/luci.git/g' feeds.conf.default
+        #sed -i 's/coolsnowwolf\/luci.git;openwrt-23.05/coolsnowwolf\/luci.git/g' feeds.conf.default
         #新增modem拨号插件
         sed -i "/src-git modem /d; 1 i src-git modem https://github.com/FUjr/Qmodem.git" feeds.conf.default
         #新增quectel_cm_5G插件
