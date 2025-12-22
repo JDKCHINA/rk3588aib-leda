@@ -94,7 +94,7 @@ jobs:
         #新增modem拨号插件
         sed -i "/src-git modem /d; 1 i src-git modem https://github.com/FUjr/Qmodem.git" feeds.conf.default
         #新增quectel_cm_5G插件
-        sed -i "/src-git quectel_cm_5G /d; 1 i src-git quectel_cm_5G https://github.com/xx-vv/quectel_cm_5G" feeds.conf.default
+        #sed -i "/src-git quectel_cm_5G /d; 1 i src-git quectel_cm_5G https://github.com/xx-vv/quectel_cm_5G" feeds.conf.default
         
         #新增风扇通用控制插件
         sed -i "/src-git fancontrol /d; 1 i src-git fancontrol https://github.com/JiaY-shi/fancontrol.git" feeds.conf.default
